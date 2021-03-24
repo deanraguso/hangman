@@ -2,6 +2,7 @@ require "./states.rb"
 
 class State
     attr_reader :state
+    attr_writer :word
 
     def initialize
         @state_rep_index = 0
@@ -90,6 +91,7 @@ class State
     def handle_loss
         system 'clear'
         puts "You have run out of lives, the man is dead!"
+        puts "The word was actually: '#{@word}'"
         sleep(2)
     end
 

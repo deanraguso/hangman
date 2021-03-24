@@ -6,13 +6,13 @@ class Session
     attr_reader :state
     def initialize
         @state = State.new
-        @word = Word.new
+        @word_object = Word.new #Word is stored in @state
         start_session
         # conclude_session
     end
 
     def print_current_options
-        puts "You are currently on #{@word.mode} mode, with a preferred word length of #{@word.length}."
+        puts "You are currently on #{@word_object.mode} mode, with a preferred word length of #{@word.length}."
     end
 
     def print_session_menu
@@ -21,15 +21,21 @@ class Session
         handle_session_menu
     end
 
+    def sync_state_and_word
+        @state.word = @word_object.return_word
+    end
+
     def handle_session_menu
         user_input = gets.chomp
         
         if user_input == 'o' || user_input == 'O'
             #Send to Word options
-            @word.set_mode
+            @word_object.set_mode
         else
             #Proceed"
         end
+
+        sync_state_and_word
     end
 
     # The actual game loop
