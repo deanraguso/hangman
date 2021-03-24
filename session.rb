@@ -4,14 +4,13 @@ require './state.rb'
 class Session
     attr_reader :state
     def initialize 
-        @state_rep = State.new
-        @state = false
+        @state = State.new
         start
     end
 
     # The actual game loop
     def start
-        @state_rep.print_state
+        @state.print_state
     end
 
 
