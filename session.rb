@@ -10,7 +10,7 @@ class Session
         @state = State.new
         @word_object = Word.new #Word is stored in @state
         start_session
-        # conclude_session
+        @win = 0 #1 if win, 0 if loss
     end
 
     def print_current_options
@@ -55,6 +55,7 @@ class Session
             @state.handle_loss
         else 
             @state.handle_win
+            @win = 1
         end
     end
 

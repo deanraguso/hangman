@@ -7,6 +7,7 @@ class Game
     def initialize
         print_startup_text
         @game_count = 0
+        @wins = 0
         start_game
     end
 
@@ -34,10 +35,17 @@ class Game
         if user_input == 'x'
             exit
         else 
-            # system("clear")
+            system("clear")
+            print_score
+            sleep 1
             session = Session.new
             @game_count += @game_count
+            @wins += session.win
         end
+    end
+
+    def print_score
+        puts "This is your ##{@game_count} game, with #{@wins} wins!"
     end
 
 end
