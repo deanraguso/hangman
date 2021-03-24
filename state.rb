@@ -100,14 +100,14 @@ class State
     def handle_win
         system 'clear'
         puts "Congratz, the dude lives!"
-        sleep(2)
+        sleep 2
     end
 
     def handle_loss
         system 'clear'
         puts "You have run out of lives, the man is dead!"
         puts "The word was actually: '#{@word}'"
-        sleep(2)
+        sleep 2
     end
 
 end
