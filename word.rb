@@ -9,6 +9,8 @@ class Word
         @similar_word = "blood"
         @length = 5
         @mode = "similar_word"
+
+        get_word
     end
 
     def return_word
@@ -17,6 +19,10 @@ class Word
 
     def print_mode
         puts @mode
+    end
+
+    def print_state_summary
+        "You are guessing a word in #{@mode} mode, of length #{@length}"
     end
 
     def set_mode
@@ -44,8 +50,10 @@ class Word
         if (change_l == 'l' || change_l == 'L')
             set_length
         else 
-            return
+            #Continue
         end
+
+        print_state_summary
     end
 
     def set_similar_word
@@ -115,9 +123,6 @@ class Word
         correct_length_words = closest_word(words)
         r = rand(correct_length_words.length)
         @word = correct_length_words[r]
-
-        #Get a random word that best suits the word length.
-        sleep 1
     end
 
 end

@@ -9,14 +9,18 @@ class State
         @state_rep = STATES[0]
         @state = 1
         @lives = 7
-        @word = "magical"
-        @letters_guessed = []
+        @word = Word.new.return_word
+        @letters_guessed = Array.new
     end
 
     def isalpha(str)
         return false if str.empty?
         !str.match(/[^A-Za-z]/)
-      end
+    end
+
+    def print_guessed_letters
+        print @letters_guessed
+    end
 
     def print_remaining_word
         print " "
@@ -36,6 +40,10 @@ class State
         system 'clear' 
         print_remaining_word
         puts @state_rep;
+
+        print "Letters you've tried: "
+        print_guessed_letters
+        puts
     end
 
     def good_guess(char)
