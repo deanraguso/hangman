@@ -19,7 +19,8 @@ class Game
     end
 
     def print_startup_text
-        puts "Welcome to Goth Hangman"
+        print_noose
+        puts "Welcome to Hangman by Dean"
     end
 
     def print_menu
