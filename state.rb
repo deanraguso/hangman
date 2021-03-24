@@ -58,6 +58,8 @@ STATES = [
 ]
 
 class State
+    attr_reader :state
+
     def initialize
         @state_rep = STATES[0]
         @state = 1
@@ -93,9 +95,18 @@ class State
         handle_guess_input
     end
 
+    # just passes the input through, doesn't check state
     def handle_guess_input
         char = gets.chomp
         @letters_guessed << char
+    end
+
+    def remaining_letters
+        @word.length - @word.split('').select{|c| @letters_guessed.include?(c)}.length
+    end
+
+    def check_state
+
     end
 
     def handle_win

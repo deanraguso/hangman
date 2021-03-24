@@ -11,9 +11,18 @@ class Session
 
     # The actual game loop
     def start_session
-        loop do
+        while (@state.state == 1)
             @state.print_state
             @state.prompt_input
+            @state.check_state
+            puts @state.remaining_letters
+        end
+
+        if (@state.state == 0) 
+            @state.handle_loss
+        else 
+            @state.handle_win
         end
     end
+
 end
