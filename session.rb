@@ -12,7 +12,7 @@ class Session
     # The actual game loop
     def start_session
         loop do
-            @state.print_remaining_word
+            @state.print_state
             @state.prompt_input
         end
     end

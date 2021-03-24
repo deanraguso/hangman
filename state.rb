@@ -67,18 +67,19 @@ class State
     end
 
     def print_remaining_word
+        print " "
         @word.split('').each do |c|
-            if @word.include?(c) 
-                print c
+            if @letters_guessed.include?(c) 
+                print c+" "
             else
-                print "_"
+                print "_ "
             end
         end
         puts()
     end
 
     def print_state
-
+        print_remaining_word
         puts @state_rep;
     end
 
