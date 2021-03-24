@@ -13,11 +13,18 @@ class State
         @letters_guessed = []
     end
 
+    def isalpha(str)
+        return false if str.empty?
+        !str.match(/[^A-Za-z]/)
+      end
+
     def print_remaining_word
         print " "
         @word.split('').each do |c|
-            if @letters_guessed.include?(c) 
-                print c+" "
+            if @letters_guessed.include?(c) && isalpha(c)
+                print c + " "
+            elsif !isalpha(c)
+                print c + " "
             else
                 print "_ "
             end
