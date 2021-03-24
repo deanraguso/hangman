@@ -28,11 +28,29 @@ class Word
         case mode
         when "s","S"
             @mode = "similar_word"
+            puts "Mode set to similar words!"
+            set_similar_word
         when "t","T"
+            puts "Mode set to theme"
             @mode = "theme"
+            set_theme
         else
             Error.new
         end
+    end
+
+    def set_similar_word
+        system "clear"
+        puts "Give me a word! (like 'flower', 'power', 'hour')"
+        @similar_word = gets.chomp
+        puts "Similar word set to '#{@similar_word}'"
+    end
+
+    def set_theme
+        system "clear"
+        puts "Give me one theme word! (like 'blood', 'gore' or 'puppies')"
+        @similar_word = gets.chomp
+        puts "Theme word set to '#{@theme}'"
     end
 
     def set_length
@@ -41,19 +59,19 @@ class Word
         len = gets.chomp
 
         if len.length == 0
-            puts "Sticking with previous of #{@length} words."
+            puts "Sticking with previous of #{@length} characters."
             return
         else
             @length = len.to_i
         end
 
-        puts "#{len} words set as preference!"
+        puts "#{len} characters set as preference!"
     end
 
 end
 
 word = Word.new
-word.set_length
+word.set_mode
 
 response = Net::HTTP.get("api.datamuse.com", "/words?ml=duck&sp=b*")
 words = JSON.parse(response)
