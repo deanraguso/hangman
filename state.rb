@@ -22,18 +22,23 @@ class State
         print @letters_guessed
     end
 
-    def print_remaining_word
-        print " "
+    def remaining_word
+        output_string = ""
         @word.split('').each do |c|
             if @letters_guessed.include?(c) && isalpha(c)
-                print c + " "
+                output_string << c + " "
             elsif !isalpha(c)
-                print c + " "
+                output_string << c + " "
             else
-                print "_ "
+                output_string << "_ "
             end
         end
-        puts()
+        return output_string
+    end
+
+    def print_remaining_word
+        print " "
+        puts(remaining_word)
     end
 
     def print_state
@@ -83,13 +88,15 @@ class State
     end
 
     def update_state
-        r = remaining_letters
+
+        r = remaining_word.split('').select(){|c| c == '_'}.length
+        puts(r)
         if r > 0 && @lives > 0
             #Game is still on!
         elsif r > 0 && @lives <= 0
             #Game loss
             @state = 0
-        elsif r ==0
+        elsif r == 0
             @state = 2
         else
             Error.new
@@ -100,6 +107,7 @@ class State
     def handle_win
         system 'clear'
         puts "Congratz, the dude lives!"
+        puts "The word was: '#{@word}'"
         sleep 2
     end
 

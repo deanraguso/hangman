@@ -6,7 +6,7 @@ class Game
 
     def initialize
         print_startup_text
-        @game_count = 0
+        @game_count = 1
         @wins = 0
         start_game
     end
@@ -39,7 +39,7 @@ class Game
             print_score
             sleep 1
             session = Session.new
-            @game_count += @game_count
+            @game_count += 1
             @wins += session.win
         end
     end

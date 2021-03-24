@@ -5,7 +5,7 @@ require './word.rb'
 $LIFE_MULTIPLIER = 1.5
 
 class Session
-    attr_reader :state
+    attr_reader :state, :win
     def initialize
         @state = State.new
         @word_object = Word.new #Word is stored in @state
