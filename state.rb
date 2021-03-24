@@ -1,61 +1,4 @@
-#Holds the Hangman states.
-STATES = [
-"   +---+
-    |   |
-        |
-        |
-        |
-        |
-  =========",
-  '
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========',
-'
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========',
-'
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========',
-'
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========',
-'
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========',
-'
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-========='
-]
+require "./states.rb"
 
 class State
     attr_reader :state
@@ -85,19 +28,25 @@ class State
         puts @state_rep;
     end
 
-    def wrong_answer
-        @lives -= @lives
-        puts "You have #{@lives} lives remaining!"
+    def good_guess(char)
+        return @word.include?(char) && !@letters_guessed.include?(char)
     end
 
     def prompt_input
+        puts "You have #{@lives} lives remaining!"
         print "Enter a character: "
         handle_guess_input
     end
 
-    # just passes the input through, doesn't check state
     def handle_guess_input
         char = gets.chomp
+
+        if !good_guess(char)
+            puts "Not a good guess!"
+            @lives -= 1
+        end
+
+        # Must go after the call to good_guess
         @letters_guessed << char
     end
 
