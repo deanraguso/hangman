@@ -24,6 +24,7 @@ class State
     end
 
     def print_state
+        system 'clear' 
         print_remaining_word
         puts @state_rep;
     end
@@ -70,11 +71,15 @@ class State
     end
 
     def handle_win
+        system 'clear'
         puts "Congratz, the dude lives!"
+        sleep(2)
     end
 
     def handle_loss
+        system 'clear'
         puts "You have run out of lives, the man is dead!"
+        sleep(2)
     end
 
 end

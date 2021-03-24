@@ -5,6 +5,7 @@ require "./session.rb"
 class Game 
 
     def initialize
+        print_startup_text
         @game_count = 0
         start_game
     end
@@ -17,8 +18,11 @@ class Game
         end
     end
 
-    def print_menu
+    def print_startup_text
         puts "Welcome to Goth Hangman"
+    end
+
+    def print_menu
         puts "Press any key to start a game."
         puts "Press x followed by enter to exit."
     end
