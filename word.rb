@@ -44,6 +44,7 @@ class Word
         puts "Give me a word! (like 'flower', 'power', 'hour')"
         @similar_word = gets.chomp
         puts "Similar word set to '#{@similar_word}'"
+        get_word
     end
 
     def set_theme
@@ -51,6 +52,7 @@ class Word
         puts "Give me one theme word! (like 'blood', 'gore' or 'puppies')"
         @similar_word = gets.chomp
         puts "Theme word set to '#{@theme}'"
+        get_word
     end
 
     def set_length
@@ -66,6 +68,21 @@ class Word
         end
 
         puts "#{len} characters set as preference!"
+        get_word
+    end
+
+    def make_url
+        "/words?ml=duck&sp=b*"
+    end
+
+    def get_word
+        request_query = make_url
+
+        response = Net::HTTP.get("api.datamuse.com", request_query)
+        words = JSON.parse(response)
+        r = rand(words.length)
+
+        @word = words[r]["word"]
     end
 
 end
@@ -73,7 +90,4 @@ end
 word = Word.new
 word.set_mode
 
-response = Net::HTTP.get("api.datamuse.com", "/words?ml=duck&sp=b*")
-words = JSON.parse(response)
-r = rand(words.length)
-puts words[r]["word"]
+puts word.return_word
