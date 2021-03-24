@@ -43,7 +43,7 @@ class State
 
     def reduce_life
         @lives -= 1
-        @state_rep_index += 1
+        @state_rep_index += 1 if @state_rep_index <= 5
         update_state_rep
     end
 

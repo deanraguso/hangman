@@ -35,7 +35,15 @@ class Word
             @mode = "theme"
             set_theme
         else
-            puts "Should not be HERE ERROR"
+            #Just continue!
+        end
+
+        puts "To change desired word length from #{@length}, press 'l' or just ENTER to continue:"
+        change_l = gets.chomp
+        if (change_l == 'l' || change_l == 'L')
+            set_length
+        else 
+            return
         end
     end
 

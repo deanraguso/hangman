@@ -2,6 +2,8 @@
 require './state.rb'
 require './word.rb'
 
+$LIFE_MULTIPLIER = 1.5
+
 class Session
     attr_reader :state
     def initialize
@@ -23,7 +25,7 @@ class Session
 
     def sync_state_and_word
         @state.word = @word_object.return_word
-        @state.lives = @state.word.length
+        @state.lives = (@state.word.length * $LIFE_MULTIPLIER).to_i
     end
 
     def handle_session_menu
