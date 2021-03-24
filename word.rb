@@ -38,6 +38,7 @@ class Word
             #Just continue!
         end
 
+        system 'clear'
         puts "To change desired word length from #{@length}, press 'l' or just ENTER to continue:"
         change_l = gets.chomp
         if (change_l == 'l' || change_l == 'L')
@@ -53,7 +54,7 @@ class Word
         @similar_word = gets.chomp
         puts "Similar word set to '#{@similar_word}'"
         get_word
-        sleep 2
+        sleep 1
     end
 
     def set_theme
@@ -99,6 +100,7 @@ class Word
         return output = words.map() {|o| o["word"]}.select() { |word| word.length >= @length }
         
         if output.length ==0
+            #recurse down to the length that has a word!
             @length -= 1
             return closest_word(words)
         end
