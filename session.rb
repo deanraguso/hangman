@@ -5,14 +5,15 @@ class Session
     attr_reader :state
     def initialize 
         @state = State.new
-        start
+        start_session
+        # conclude_session
     end
 
     # The actual game loop
-    def start
-        @state.print_state
+    def start_session
+        loop do
+            @state.print_remaining_word
+            @state.prompt_input
+        end
     end
-
-
-
 end

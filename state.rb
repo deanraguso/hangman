@@ -62,9 +62,23 @@ class State
         @state_rep = STATES[0]
         @state = 1
         @lives = 7
+        @word = "magic"
+        @letters_guessed = []
+    end
+
+    def print_remaining_word
+        @word.split('').each do |c|
+            if @word.include?(c) 
+                print c
+            else
+                print "_"
+            end
+        end
+        puts()
     end
 
     def print_state
+
         puts @state_rep;
     end
 
@@ -73,15 +87,14 @@ class State
         puts "You have #{@lives} lives remaining!"
     end
 
-    def check_state
-        if @state == 1
-            #Game is currently in progress
-        elsif @state == 2
-            handle_win
-        else
-            #Game is lost
-            handle_loss
-        end
+    def prompt_input
+        print "Enter a character: "
+        handle_guess_input
+    end
+
+    def handle_guess_input
+        char = gets.chomp
+        @letters_guessed << char
     end
 
     def handle_win

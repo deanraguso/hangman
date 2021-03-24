@@ -6,11 +6,11 @@ class Game
 
     def initialize
         @game_count = 0
-        start
+        start_game
     end
 
     # Menu Loop
-    def start
+    def start_game
         loop do
             print_menu
             handle_input
@@ -29,7 +29,7 @@ class Game
         if user_input == 'x'
             exit
         else 
-            system("clear")
+            # system("clear")
             session = Session.new
             @game_count += @game_count
         end
