@@ -50,7 +50,7 @@ class Word
     def set_theme
         system "clear"
         puts "Give me one theme word! (like 'blood', 'gore' or 'puppies')"
-        @similar_word = gets.chomp
+        @theme = gets.chomp
         puts "Theme word set to '#{@theme}'"
         get_word
     end
@@ -72,7 +72,15 @@ class Word
     end
 
     def make_url
-        "/words?ml=duck&sp=b*"
+        if @mode == "similar_word"
+            return "/words?rel_rhy=#{@similar_word}"
+        elsif @mode == "theme"
+            return "/words?ml=#{@theme}"
+        else
+            # Defaults to similar word
+            puts "Error: Non-matching"
+            return "/words?ml=#{@similar_word}"
+        end
     end
 
     def get_word
