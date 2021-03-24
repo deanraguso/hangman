@@ -35,7 +35,7 @@ class Word
             @mode = "theme"
             set_theme
         else
-            Error.new
+            puts "Should not be HERE ERROR"
         end
     end
 
@@ -45,6 +45,7 @@ class Word
         @similar_word = gets.chomp
         puts "Similar word set to '#{@similar_word}'"
         get_word
+        sleep 2
     end
 
     def set_theme
@@ -53,6 +54,7 @@ class Word
         @theme = gets.chomp
         puts "Theme word set to '#{@theme}'"
         get_word
+        sleep 2
     end
 
     def set_length
@@ -69,6 +71,8 @@ class Word
 
         puts "#{len} characters set as preference!"
         get_word
+
+        sleep 2
     end
 
     def make_url
@@ -95,7 +99,3 @@ class Word
 
 end
 
-word = Word.new
-word.set_mode
-
-puts word.return_word
