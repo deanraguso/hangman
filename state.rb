@@ -64,7 +64,7 @@ class State
         @state_rep = STATES[0]
         @state = 1
         @lives = 7
-        @word = "magic"
+        @word = "magical"
         @letters_guessed = []
     end
 
@@ -105,7 +105,18 @@ class State
         @word.length - @word.split('').select{|c| @letters_guessed.include?(c)}.length
     end
 
-    def check_state
+    def update_state
+        r = remaining_letters
+        if r > 0 && @lives > 0
+            #Game is still on!
+        elsif r > 0 && @lives <= 0
+            #Game loss
+            @state = 0
+        elsif r ==0
+            @state = 2
+        else
+            Error.new
+        end
 
     end
 

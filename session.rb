@@ -14,8 +14,7 @@ class Session
         while (@state.state == 1)
             @state.print_state
             @state.prompt_input
-            @state.check_state
-            puts @state.remaining_letters
+            @state.update_state
         end
 
         if (@state.state == 0) 
