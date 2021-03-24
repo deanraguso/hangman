@@ -1,5 +1,6 @@
 #Session file, holds the session class
 require './state.rb'
+require './word.rb'
 
 class Session
     attr_reader :state

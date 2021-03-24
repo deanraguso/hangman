@@ -1,0 +1,61 @@
+#Class for generating random and themed words
+require 'net/http'
+require 'json'
+
+class Word
+    def initialize
+        @word = "gothic"
+        @theme = "goth"
+        @similar_word = "blood"
+        @length = 5
+        @mode = "similar_word"
+    end
+
+    def return_word
+        return @word
+    end
+
+    def print_mode
+        puts @mode
+    end
+
+    def set_mode
+        system 'clear'
+        puts "To change mode: 's': similar word / 't':theme / anything else to continue:"
+
+        mode = gets.chomp
+
+        case mode
+        when "s","S"
+            @mode = "similar_word"
+        when "t","T"
+            @mode = "theme"
+        else
+            Error.new
+        end
+    end
+
+    def set_length
+        system 'clear'
+        puts "Enter the size of word you'd prefer:"
+        len = gets.chomp
+
+        if len.length == 0
+            puts "Sticking with previous of #{@length} words."
+            return
+        else
+            @length = len.to_i
+        end
+
+        puts "#{len} words set as preference!"
+    end
+
+end
+
+word = Word.new
+word.set_length
+
+response = Net::HTTP.get("api.datamuse.com", "/words?ml=duck&sp=b*")
+words = JSON.parse(response)
+r = rand(words.length)
+puts words[r]["word"]
