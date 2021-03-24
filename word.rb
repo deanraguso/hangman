@@ -62,7 +62,7 @@ class Word
         @theme = gets.chomp
         puts "Theme word set to '#{@theme}'"
         get_word
-        sleep 2
+        sleep 1
     end
 
     def set_length
@@ -80,7 +80,7 @@ class Word
         puts "#{len} characters set as preference!"
         get_word
 
-        sleep 2
+        sleep 1
     end
 
     def make_url
@@ -95,14 +95,27 @@ class Word
         end
     end
 
+    def closest_word(words)
+        return output = words.map() {|o| o["word"]}.select() { |word| word.length >= @length }
+        
+        if output.length ==0
+            @length -= 1
+            return closest_word(words)
+        end
+    end
+
     def get_word
         request_query = make_url
 
         response = Net::HTTP.get("api.datamuse.com", request_query)
         words = JSON.parse(response)
-        r = rand(words.length)
 
-        @word = words[r]["word"]
+        correct_length_words = closest_word(words)
+        r = rand(correct_length_words.length)
+        @word = correct_length_words[r]
+
+        #Get a random word that best suits the word length.
+        sleep 1
     end
 
 end
