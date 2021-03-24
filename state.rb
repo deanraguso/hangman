@@ -79,7 +79,7 @@ class State
     end
 
     def remaining_letters
-        @word.length - @word.split('').strip(' ').strip('-').select{|c| @letters_guessed.include?(c)}.length
+        @word.length - @word.split('').select() {|l| l != ' ' && l != '-'}.select{|c| @letters_guessed.include?(c)}.length
     end
 
     def update_state
