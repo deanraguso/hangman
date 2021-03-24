@@ -4,6 +4,7 @@ class State
     attr_reader :state
 
     def initialize
+        @state_rep_index = 0
         @state_rep = STATES[0]
         @state = 1
         @lives = 7
@@ -39,12 +40,22 @@ class State
         handle_guess_input
     end
 
+    def reduce_life
+        @lives -= 1
+        @state_rep_index += 1
+        update_state_rep
+    end
+
+    def update_state_rep
+        @state_rep = STATES[@state_rep_index]
+    end
+
     def handle_guess_input
         char = gets.chomp
 
         if !good_guess(char)
             puts "Not a good guess!"
-            @lives -= 1
+            reduce_life
         end
 
         # Must go after the call to good_guess
