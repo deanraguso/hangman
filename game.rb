@@ -1,3 +1,5 @@
+require "./session.rb"
+
 # Main Game Class File
 
 class Game 
@@ -27,7 +29,9 @@ class Game
         if user_input == 'x'
             exit
         else 
-            return 1
+            system("clear")
+            session = Session.new
+            @game_count += @game_count
         end
     end
 
