@@ -2,7 +2,7 @@ require "./states.rb"
 
 class State
     attr_reader :state
-    attr_writer :word
+    attr_accessor :word, :lives
 
     def initialize
         @state_rep_index = 0

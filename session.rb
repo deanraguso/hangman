@@ -23,6 +23,7 @@ class Session
 
     def sync_state_and_word
         @state.word = @word_object.return_word
+        @state.lives = @state.word.length
     end
 
     def handle_session_menu

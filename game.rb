@@ -1,5 +1,5 @@
 require "./session.rb"
-
+require "./ascii_art.rb"
 # Main Game Class File
 
 class Game 
