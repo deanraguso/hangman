@@ -9,8 +9,8 @@ class Session
     def initialize
         @state = State.new
         @word_object = Word.new #Word is stored in @state
-        start_session
         @win = 0 #1 if win, 0 if loss
+        start_session
     end
 
     def print_current_options
@@ -51,11 +51,14 @@ class Session
             @state.update_state
         end
 
+
         if (@state.state == 0) 
             @state.handle_loss
-        else 
+        elsif (@state.state == 2)
             @state.handle_win
-            @win = 1
+            @win += 1
+        else 
+            puts "Should not be here, ERROR"
         end
     end
 

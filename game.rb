@@ -40,6 +40,7 @@ class Game
             sleep 1
             session = Session.new
             @game_count += 1
+
             @wins += session.win
         end
     end

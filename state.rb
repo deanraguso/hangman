@@ -90,7 +90,6 @@ class State
     def update_state
 
         r = remaining_word.split('').select(){|c| c == '_'}.length
-        puts(r)
         if r > 0 && @lives > 0
             #Game is still on!
         elsif r > 0 && @lives <= 0
@@ -117,5 +116,5 @@ class State
         puts "The word was actually: '#{@word}'"
         sleep 2
     end
-
+    
 end
